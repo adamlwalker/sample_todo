@@ -48,7 +48,7 @@ class ProjectsController < ApplicationController
   end
 
   def clear
-    @project.items.complete.destroy_all
+    @project.items.complete.update_all(cleared: true)
     respond_to do |format|
       format.html { redirect_to project_path(@project),
                     :notice => 'Completed items were successfully cleared.' }
