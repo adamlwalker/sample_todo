@@ -48,12 +48,19 @@ class ProjectsController < ApplicationController
   end
 
   def clear
+    if @project.items.complete.count > 0
     @project.items.complete.update_all(cleared: true)
     respond_to do |format|
       format.html { redirect_to project_path(@project),
                     :notice => 'Completed items were successfully cleared.' }
     end
+  else
+    respond_to do |format|
+      format.html { redirect_to project_path(@project),
+                    :notice => 'There is nothing to clear!' }
   end
+end
+end
 
 private
   def set_project
