@@ -1,2 +1,4 @@
-<h2><%= link_to @project.title, edit_project_path(@project) %> Items</h2>
+        <div class="col-md-6">
+            <div class="todolist not-done">             
+<h1><%= link_to @project.title, edit_project_path(@project) %> Items</h1>
 <%= render :partial => 'items/index', :locals => { :project => @project } %>

@@ -6,6 +6,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
+     @item = Item.new 
   end
 
   def new
@@ -48,7 +49,7 @@ class ProjectsController < ApplicationController
   end
 
   def clear
-    if @project.items.complete.count > 0
+    if @project.items.complete.where(cleared: nil).count > 0
     @project.items.complete.update_all(cleared: true)
     respond_to do |format|
       format.html { redirect_to project_path(@project),
@@ -57,7 +58,7 @@ class ProjectsController < ApplicationController
   else
     respond_to do |format|
       format.html { redirect_to project_path(@project),
-                    :notice => 'There is nothing to clear!' }
+                    :notice => 'There are no completed items for this project.' }
   end
 end
 end

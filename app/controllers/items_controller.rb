@@ -9,11 +9,13 @@ class ItemsController < ApplicationController
     @item = @project.items.build(item_params)
 
     respond_to do |format|
+
       if @item.save
         format.html { redirect_to project_path(@project),
                       :notice => 'Item was successfully created.' }
       else
-        format.html { render :action => 'new' }
+          format.html { redirect_to project_path(@project),
+                      :notice => @item.errors.full_messages.to_sentence }
       end
     end
   end

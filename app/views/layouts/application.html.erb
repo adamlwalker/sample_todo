@@ -11,21 +11,40 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <div class="page-header">
-      <h1>Todo app</h1>
-        <ul>
-          <li><%= link_to 'Projects', projects_path %></li>
-        </ul>
-    </div>
+      <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <p class="navbar-brand">Todo App</p>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><%= link_to 'Projects', projects_path %></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
 
-    <div id="container">
-      <p id="notice"><%= notice %></p>
+ <div class="container-fluid">
+    <div class="row">
+
+      <%= flash_messages %>
 
       <%= yield %>
-    </div>
 
-    <footer>
-      <p>2015</p>
-    </footer>
+     </div>
+</div>
+
+    <div class="footer">
+    <div class="container-fluid">
+      <p>2015 - PhishMe Homework App</p>
+      </div>
+    </div>
   </body>
 </html>

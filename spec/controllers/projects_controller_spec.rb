@@ -155,15 +155,15 @@ RSpec.describe ProjectsController, :type => :controller do
       expect(assigns(:project)).to eq(project)
     end
 
-    it 'does not destroy incomplete items' do
+    it 'does not mark incomplete items' do
       delete :clear, { :id => project.to_param }
-      expect(project.items.count).to eq(1)
+      expect(project.items.where(cleared: nil).count).to eq(1)
     end
 
-    it 'destroys complete items' do
+    it 'marks complete items' do
       project.items.first.update(:done => true)
       delete :clear, { :id => project.to_param }
-      expect(project.reload.items.count).to eq(0)
+      expect(project.reload.items.where(cleared: true).count).to eq(1)
     end
   end
 end
