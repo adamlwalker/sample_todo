@@ -34,3 +34,5 @@ stats
 time:zones:all
 tmp:clear
 tmp:create
+todo:show
+todo:clear

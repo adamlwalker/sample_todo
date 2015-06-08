@@ -8,4 +8,25 @@ namespace :todo do
      end
   end
   end
+
+  desc "purge all soft deleted items"
+  task clear: :environment do
+  	def clear_items
+  	  items = Item.where(:cleared => true).count
+  	  if items == 0
+  	    puts "Nothing to clear"
+  	    return
+  	   end
+  	 print "Delete #{items} item(s) [Y/n]: "
+     choice = STDIN.gets
+     if choice.downcase.strip != "n"
+      Item.where(:cleared => true).destroy_all
+      puts "#{items} cleared"
+     else
+     	puts "Rake aborted"
+     end
+  end
+
+clear_items
+end
 end
